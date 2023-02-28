@@ -2,13 +2,15 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+A-Rouges-Journey/[Ll]ibrary/
+A-Rouges-Journey/[Tt]emp/
+A-Rouges-Journey/[Oo]bj/
+A-Rouges-Journey/[Bb]uild/
+A-Rouges-Journey/[Bb]uilds/
+A-Rouges-Journey/[Ll]ogs/
+A-Rouges-Journey/[Mm]emoryCaptures/
+A-Rouges-Journey\UserSettings\EditorUserSettings.asset
+A-Rouges-Journey\UserSettings\Layouts\default-2021.dwlt
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
