@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
             return;
         }
         
-        transform.SetPositionAndRotation(inputVector * 0.75f, Quaternion.FromToRotation(Vector2.right, inputVector));
+        transform.SetLocalPositionAndRotation(inputVector * 0.5f, Quaternion.FromToRotation(Vector2.right, inputVector));
 
         if (!isFiring)
         {
