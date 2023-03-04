@@ -24,4 +24,11 @@ public class PlayerStats : MonoBehaviour
         get { return attackdelay; }
         set { attackdelay = value; }
     }
+
+    [SerializeField] private float attackVelocity;
+    public float AttackVelocity
+    {
+        get { return attackVelocity; }
+        set { attackVelocity = value; }
+    }
 }
