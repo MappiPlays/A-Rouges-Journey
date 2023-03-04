@@ -6,18 +6,26 @@ using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private bool isFiring = false;
+    [SerializeField] private bool isFiring = false, isCooldown = false;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawn;
-
-    [SerializeField] private PlayerStats playerStats;
 
     private float attackDelay;
     private Vector2 inputVector;
 
+    private void Awake()
+    {
+        PlayerStats.OnChange += UpdateAttackDelay;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerStats.OnChange -= UpdateAttackDelay;
+    }
+
     private void Start()
     {
-        attackDelay = playerStats.AttackDelay;
+        attackDelay = PlayerStats.Instance.AttackDelay;
     }
 
     void OnFire(InputValue input)
@@ -27,7 +35,6 @@ public class Gun : MonoBehaviour
         if (inputVector == Vector2.zero)
         {
             isFiring = false;
-            Debug.Log("Stop Shooting!");
             return;
         }
         
@@ -36,7 +43,8 @@ public class Gun : MonoBehaviour
         if (!isFiring)
         {
             isFiring = true;
-            StartCoroutine(ShootingCo());
+            if(!isCooldown)
+                StartCoroutine(ShootingCo());
         }
 
     }
@@ -46,7 +54,14 @@ public class Gun : MonoBehaviour
         while(isFiring)
         {
             Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.FromToRotation(Vector2.right, inputVector));
+            isCooldown = true;
             yield return new WaitForSeconds(attackDelay);
+            isCooldown = false;
         }
+    }
+
+    void UpdateAttackDelay(PlayerStats stats)
+    {
+        attackDelay = stats.AttackDelay;
     }
 }

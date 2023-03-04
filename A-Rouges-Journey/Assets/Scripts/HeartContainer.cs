@@ -15,19 +15,20 @@ public class HeartContainer : MonoBehaviour
 
     private void Awake()
     {
+        PlayerStats.OnChange += UpdateSprite;
         img = GetComponent<Image>();
     }
 
-    private void Start()
+    private void OnDestroy()
     {
-        updateSprite();
+        PlayerStats.OnChange -= UpdateSprite;
     }
 
-    public void updateSprite()
+    public void UpdateSprite(PlayerStats stats)
     {
         switch (stats.Health - (2 * heartNum))
         {
-            case 0:
+            case <= 0:
                 img.sprite = spriteEmpty;
                 break;
             

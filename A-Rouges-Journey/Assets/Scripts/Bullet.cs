@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        rb.velocity = transform.right * 5;
+        rb.velocity = transform.right * PlayerStats.Instance.AttackVelocity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

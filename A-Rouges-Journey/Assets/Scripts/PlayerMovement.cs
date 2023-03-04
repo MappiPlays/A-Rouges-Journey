@@ -8,21 +8,31 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveDirection;
     
     private Rigidbody2D rb;
-    private PlayerStats stats;
+    private float moveSpeed;
 
     private void Awake()
     {
+        PlayerStats.OnChange += UpdateMoveSpeed;
         rb = GetComponent<Rigidbody2D>();
-        stats = GetComponent<PlayerStats>();
+    }
+
+    private void OnDestroy()
+    {
+        PlayerStats.OnChange -= UpdateMoveSpeed;
     }
 
     void Update()
     {
-        rb.MovePosition(rb.position + stats.MovementSpeed * Time.fixedDeltaTime * moveDirection);
+        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
     }
 
     void OnMove(InputValue input)
     {
         moveDirection = input.Get<Vector2>();
+    }
+
+    private void UpdateMoveSpeed(PlayerStats stats)
+    {
+        moveSpeed = stats.MovementSpeed;
     }
 }

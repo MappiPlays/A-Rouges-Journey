@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 131747018}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,9 +410,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementspeed: 4
-  health: 5
+  health: 6
   attackdelay: 1
-  attackVelocity: 5
+  attackVelocity: 7
 --- !u!114 &131747019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52976,9 +52976,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFiring: 0
+  isCooldown: 0
   bulletPrefab: {fileID: 3326948097668421886, guid: 359260cad834ce74ab3bc762e96930df, type: 3}
   bulletSpawn: {fileID: 1028094715}
-  playerStats: {fileID: 131747018}
 --- !u!1 &1927093243
 GameObject:
   m_ObjectHideFlags: 0
