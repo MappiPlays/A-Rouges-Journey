@@ -61,4 +61,15 @@ public class PlayerStats : MonoBehaviour
             OnChange?.Invoke(Instance);
         }
     }
+
+    [SerializeField] private float attackdamage;
+    public float AttackDamage
+    {
+        get { return attackdamage; }
+        set
+        {
+            attackdamage = value;
+            OnChange?.Invoke(Instance);
+        }
+    }
 }

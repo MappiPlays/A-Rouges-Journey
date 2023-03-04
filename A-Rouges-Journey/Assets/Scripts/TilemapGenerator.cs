@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -10,11 +11,15 @@ public class TilemapGenerator : MonoBehaviour
     [SerializeField] TileBase[] groundTiles;
     [SerializeField] Tilemap borderTilemap;
     [SerializeField] TileBase borderTile;
+    [SerializeField] GameObject spawnPointsParent;
+    [SerializeField] GameObject spawnPointPrefab;
     [SerializeField] int width;
     [SerializeField] int height;
     [SerializeField] float offsetX;
     [SerializeField] float offsetY;
     [SerializeField] float scale;
+
+    private int numSpawnPoints = 0;
 
 
     void Start()
@@ -49,6 +54,7 @@ public class TilemapGenerator : MonoBehaviour
             }
             x++;
         }
+        Debug.Log("Enemies spawned: " + numSpawnPoints);
     }
 
     void PlaceGroundTile(Vector3Int position, float noisevalue)
@@ -61,6 +67,12 @@ public class TilemapGenerator : MonoBehaviour
 
         if (noisevalue < .65f && noisevalue > .35f)
         {
+            if (noisevalue > .495f && noisevalue < .505f)
+            {
+                // create EnemySpawnpoints
+                Instantiate(spawnPointPrefab, gameObject.GetComponent<Grid>().GetCellCenterWorld(position), Quaternion.identity, spawnPointsParent.transform);
+                numSpawnPoints++;
+            }
             //Normal Path
             groundTilemap.SetTile(position, groundTiles[0]);
         }

@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
         PlayerStats.OnChange -= UpdateMoveSpeed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
+        rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * moveDirection);
     }
 
     void OnMove(InputValue input)

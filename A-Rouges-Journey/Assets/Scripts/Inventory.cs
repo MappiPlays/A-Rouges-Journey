@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance;
+
     [SerializeField] private int gems;
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public int GetGems()
     {
         return gems; 
