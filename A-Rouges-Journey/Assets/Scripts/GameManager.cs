@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject exitBorder;
+    [SerializeField] private GameObject exitPointer;
 
     private void Awake()
     {
@@ -18,7 +21,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<Player>().gameObject;
+        exitPointer = player.GetComponentInChildren<ExitPointer>(true).gameObject;
     }
 
     // Update is called once per frame
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
         if(stats.NumOfEnemies == 0) 
         {
             Debug.Log("All Enemies are Dead");
+            exitPointer.SetActive(true);
             exitBorder.SetActive(false);
         }
     }
