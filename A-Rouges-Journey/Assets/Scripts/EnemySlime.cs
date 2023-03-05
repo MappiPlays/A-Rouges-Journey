@@ -12,10 +12,12 @@ public class EnemySlime : MonoBehaviour
 
     private float speedMultiplier;
     private Rigidbody2D rb;
+    private Animator anim;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         target = transform.parent;
         speedMultiplier = 0f;
     }
@@ -45,6 +47,7 @@ public class EnemySlime : MonoBehaviour
 
     private void OnHit(float damage)
     {
+        anim.SetTrigger("TakeDamage");
         health -= damage;
         if(health <= 0f)
         {
