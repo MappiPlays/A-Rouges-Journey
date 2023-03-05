@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
+
+    public static event Action<Inventory> OnChange;
 
     [SerializeField] private int gems;
 
@@ -21,6 +24,7 @@ public class Inventory : MonoBehaviour
     public void AddGems(int amount)
     {
         gems += amount;
+        OnChange?.Invoke(Instance);
     }
 
     public bool RemoveGems(int amount)
@@ -30,6 +34,7 @@ public class Inventory : MonoBehaviour
             return false;
         }
         gems -= amount;
+        OnChange?.Invoke(Instance);
         return true;
     }
 

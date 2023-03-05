@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
 
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject ui;
     [SerializeField] private GameObject exitBorder;
     [SerializeField] private GameObject exitPointer;
 
@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<Player>().gameObject;
-        exitPointer = player.GetComponentInChildren<ExitPointer>(true).gameObject;
+        ui = FindObjectOfType<UIManager>().gameObject;
+        exitPointer = ui.GetComponentInChildren<ExitPointer>(true).gameObject;
     }
 
     // Update is called once per frame
