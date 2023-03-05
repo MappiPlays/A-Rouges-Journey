@@ -21,10 +21,6 @@ public class UIManager : MonoBehaviour
         PlayerStats.OnChange += UpdateStatsUI;
         Inventory.OnChange += UpdateInventoryUI;
         statsUITexts = GetComponentsInChildren<TextMeshProUGUI>();
-    }
-
-    private void Start()
-    {
         gemsText = statsUITexts.Where(t => t.name == "Text_Gems").First();
         speedText = statsUITexts.Where(t => t.name == "Text_Speed").First();
         damageText = statsUITexts.Where(t => t.name == "Text_Damage").First();
