@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class TilemapGenerator : MonoBehaviour
 {
@@ -18,9 +19,6 @@ public class TilemapGenerator : MonoBehaviour
     [SerializeField] float offsetX;
     [SerializeField] float offsetY;
     [SerializeField] float scale;
-
-    private int numSpawnPoints = 0;
-
 
     void Start()
     {
@@ -54,12 +52,11 @@ public class TilemapGenerator : MonoBehaviour
             }
             x++;
         }
-        Debug.Log("Enemies spawned: " + numSpawnPoints);
     }
 
     void PlaceGroundTile(Vector3Int position, float noisevalue)
     {
-        if (position.x <= 5 && position.y <= 5)
+        if (needToStayFree(position))
         {
             groundTilemap.SetTile(position, groundTiles[0]);
             return;
@@ -71,7 +68,7 @@ public class TilemapGenerator : MonoBehaviour
             {
                 // create EnemySpawnpoints
                 Instantiate(spawnPointPrefab, gameObject.GetComponent<Grid>().GetCellCenterWorld(position), Quaternion.identity, spawnPointsParent.transform);
-                numSpawnPoints++;
+                GameStats.Instance.NumOfEnemies++;
             }
             //Normal Path
             groundTilemap.SetTile(position, groundTiles[0]);
@@ -85,7 +82,7 @@ public class TilemapGenerator : MonoBehaviour
 
     void PlaceBorderTile(Vector3Int position, float noisevalue)
     {
-        if (position.x <= 5 && position.y <= 5)
+        if (needToStayFree(position))
         {
             return;
         }
@@ -94,5 +91,15 @@ public class TilemapGenerator : MonoBehaviour
             if ((position.x + position.y) % 2 == 0)
                 borderTilemap.SetTile(position, borderTile);
         }
+    }
+
+    bool needToStayFree(Vector3Int position)
+    {
+        if ((position.x <= 5 && position.y <= 5) || (position.x >= 42 && position.y >= 42))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

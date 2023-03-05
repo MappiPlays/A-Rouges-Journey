@@ -55,7 +55,14 @@ public class EnemySlime : MonoBehaviour
             {
                 Instantiate(drop, transform.position, Quaternion.identity);
             }
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        GameStats.Instance.NumOfEnemies--;
+        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 }
