@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         GameStats.OnStatsChange += OnGameStatsChanged;
         PlayerStats.OnLevelUp += FreezGame;
+        Time.timeScale = 1f;
     }
 
     private void OnDestroy()
@@ -63,5 +65,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         OnGameResumed?.Invoke();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 7ed444382aac8da4585cc58373c563fd, type: 3}
   movementSpeedEffect: 0
   damageEffect: 0
-  delayEffect: -0.1
+  delayEffect: 0.2
   attackSpeedEffect: 0
