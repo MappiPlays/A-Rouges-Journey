@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -12,17 +13,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject exitBorder;
     [SerializeField] private GameObject exitPointer;
 
+    public static event Action OnGamePaused;
+    public static event Action OnGameFreezed;
+    public static event Action OnGameResumed;
+
     private void Awake()
     {
         Instance = this;
         GameStats.OnStatsChange += OnGameStatsChanged;
-        PlayerStats.OnLevelUp += PauseGame;
+        PlayerStats.OnLevelUp += FreezGame;
     }
 
     private void OnDestroy()
     {
         GameStats.OnStatsChange -= OnGameStatsChanged;
-        PlayerStats.OnLevelUp -= PauseGame;
+        PlayerStats.OnLevelUp -= FreezGame;
     }
 
     // Start is called before the first frame update
@@ -44,11 +49,19 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        FreezGame();
+        OnGamePaused?.Invoke();
+    }
+
+    public void FreezGame()
+    {
         Time.timeScale = 0f;
+        OnGameFreezed?.Invoke();
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        OnGameResumed?.Invoke();
     }
 }

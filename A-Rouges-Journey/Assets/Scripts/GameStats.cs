@@ -13,6 +13,14 @@ public class GameStats : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        GameManager.OnGameFreezed += HandleGameFreezed;
+        GameManager.OnGameResumed += HandleGameResumed;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGameFreezed -= HandleGameFreezed;
+        GameManager.OnGameResumed -= HandleGameResumed;
     }
 
     private void Start()
@@ -52,4 +60,15 @@ public class GameStats : MonoBehaviour
             Score--;
         }
     }
+
+    private void HandleGameFreezed()
+    {
+        StopAllCoroutines();
+    }
+
+    private void HandleGameResumed()
+    {
+        StartCoroutine(scoreDecreaseOverTimeCo());
+    }
+
 }

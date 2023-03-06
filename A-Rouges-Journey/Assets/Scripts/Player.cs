@@ -28,4 +28,9 @@ public class Player : MonoBehaviour
         PlayerStats.Instance.Health -= 1;
         anim.SetTrigger("TakeDamage");
     }
+
+    private void OnEscape()
+    {
+        GameManager.Instance.PauseGame();
+    }
 }

@@ -9,6 +9,7 @@ using System.Globalization;
 public class UIManager : MonoBehaviour
 {
     private GameObject levelUpScreen;
+    private GameObject PauseScreen;
     private TextMeshProUGUI[] UITexts;
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI gemsText;
@@ -25,9 +26,10 @@ public class UIManager : MonoBehaviour
         PlayerStats.OnLevelUp += ShowLevelUpScreen;
         Inventory.OnChange += UpdateInventoryUI;
         GameStats.OnScoreChange += UpdateScoreUI;
+        GameManager.OnGamePaused += HandleGamePaused;
+        UITexts = GetComponentsInChildren<TextMeshProUGUI>(true);
         levelUpScreen = GetComponentInChildren<LevelUpScreen>(true).gameObject;
-        levelUpScreen.SetActive(false);
-        UITexts = GetComponentsInChildren<TextMeshProUGUI>();
+        PauseScreen = UITexts.Where(t => t.name == "Label_Pause").First().transform.parent.parent.gameObject;
         scoreText = UITexts.Where(t => t.name == "Text_Score").First();
         gemsText = UITexts.Where(t => t.name == "Text_Gems").First();
         speedText = UITexts.Where(t => t.name == "Text_Speed").First();
@@ -36,6 +38,9 @@ public class UIManager : MonoBehaviour
         attackSpeedText = UITexts.Where(t => t.name == "Text_AttackSpeed").First();
         playerLevelText = UITexts.Where(t => t.name == "Text_PlayerLevel").First();
         xpBar = GetComponentInChildren<Slider>();
+        
+        levelUpScreen.SetActive(false);
+        PauseScreen.SetActive(false);
     }
 
     private void OnDestroy()
@@ -44,6 +49,7 @@ public class UIManager : MonoBehaviour
         PlayerStats.OnLevelUp -= ShowLevelUpScreen;
         Inventory.OnChange -= UpdateInventoryUI;
         GameStats.OnScoreChange -= UpdateScoreUI;
+        GameManager.OnGamePaused -= HandleGamePaused;
     }
 
     private void UpdateStatsUI(PlayerStats stats)
@@ -70,5 +76,10 @@ public class UIManager : MonoBehaviour
     private void ShowLevelUpScreen()
     {
         levelUpScreen.SetActive(true);
+    }
+
+    private void HandleGamePaused()
+    {
+        PauseScreen.SetActive(true);
     }
 }

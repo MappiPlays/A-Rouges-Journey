@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class LevelUpScreen : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class LevelUpScreen : MonoBehaviour
 
     private void OnEnable()
     {
+        FindObjectOfType<EventSystem>().SetSelectedGameObject(itemLeft.gameObject);
         item1 = items[Random.Range(0, items.Length)];
         item2 = items[Random.Range(0, items.Length)];
         while (item1.Equals(item2))
