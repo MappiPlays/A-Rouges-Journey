@@ -55,7 +55,7 @@ public class Gun : MonoBehaviour
         {
             Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.FromToRotation(Vector2.right, inputVector));
             isCooldown = true;
-            yield return new WaitForSeconds(attackDelay);
+            yield return new WaitForSeconds(1/attackDelay);
             isCooldown = false;
         }
     }

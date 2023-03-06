@@ -26,7 +26,7 @@ public class ItemCard : ScriptableObject
         }
         if (delayEffect != 0f)
         {
-            effects += "Delay " + delayEffect.ToString("+0.##;-0.##");
+            effects += "Fire Rate " + delayEffect.ToString("+0.##;-0.##");
         }
         if (attackSpeedEffect != 0f)
         {
