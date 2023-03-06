@@ -11,4 +11,28 @@ public class ItemCard : ScriptableObject
     public float damageEffect;
     public float delayEffect;
     public float attackSpeedEffect;
+
+    public string EffectsToString()
+    {
+        string effects = "";
+
+        if (movementSpeedEffect != 0f)
+        {
+            effects += "Speed " + movementSpeedEffect.ToString("+0.##;-0.##"); ;
+        }
+        if (damageEffect != 0f)
+        {
+            effects += "Damage " + damageEffect.ToString("+0.##;-0.##");
+        }
+        if (delayEffect != 0f)
+        {
+            effects += "Delay " + delayEffect.ToString("+0.##;-0.##");
+        }
+        if (attackSpeedEffect != 0f)
+        {
+            effects += "Shot Speed " + attackSpeedEffect.ToString("+0.##;-0.##");
+        }
+
+        return effects;
+    }
 }

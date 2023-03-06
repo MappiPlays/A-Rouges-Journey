@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
         PlayerStats.OnLevelUp += ShowLevelUpScreen;
         Inventory.OnChange += UpdateInventoryUI;
         GameStats.OnScoreChange += UpdateScoreUI;
-        levelUpScreen = GetComponentInChildren<LevelUpScreen>().gameObject;
+        levelUpScreen = GetComponentInChildren<LevelUpScreen>(true).gameObject;
         levelUpScreen.SetActive(false);
         UITexts = GetComponentsInChildren<TextMeshProUGUI>();
         scoreText = UITexts.Where(t => t.name == "Text_Score").First();

@@ -121,6 +121,15 @@ public class PlayerStats : MonoBehaviour
     private void HandleLevelUp()
     {
         Experience = Experience - experienceToLevelUp;
-        experienceToLevelUp = Mathf.RoundToInt(experienceToLevelUp * 1.2f);
+        experienceToLevelUp = Mathf.RoundToInt(experienceToLevelUp * 1.5f);
+    }
+
+    public void UpdateStats(float moveSpeed, float damage, float delay, float attackSpeed)
+    {
+        movementspeed += moveSpeed;
+        attackdamage += damage;
+        attackdelay += delay;
+        attackVelocity += attackSpeed;
+        OnChange?.Invoke(Instance);
     }
 }

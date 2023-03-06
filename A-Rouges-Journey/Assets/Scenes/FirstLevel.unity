@@ -370,7 +370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &79723581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -442,11 +442,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d647cdc87edb3445b8aea10ab3966cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemLeft: {fileID: 0}
-  itemRight: {fileID: 0}
+  itemLeft: {fileID: 1032622721}
+  itemRight: {fileID: 1395568356}
   items:
   - {fileID: 11400000, guid: 9e73d9eb193858e48a86ce2f6b8dd675, type: 2}
   - {fileID: 11400000, guid: 51da9c35e26b01a489d77460e323cac8, type: 2}
+  - {fileID: 11400000, guid: 259837e476a0c234383019461e3e465b, type: 2}
+  - {fileID: 11400000, guid: 1bd38e4ea16d69143a20c161b00a6d9f, type: 2}
 --- !u!1 &131747011
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,14 +3109,14 @@ MonoBehaviour:
       - m_Target: {fileID: 79723584}
         m_TargetAssemblyTypeName: LevelUpScreen, Assembly-CSharp
         m_MethodName: OnItemBought
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 79723580}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -3201,8 +3203,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.25, y: 0}
+  m_SizeDelta: {x: 1.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043852157
 MonoBehaviour:
@@ -3406,8 +3408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.25, y: 0}
+  m_SizeDelta: {x: 1.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1059966634
 MonoBehaviour:
@@ -3541,8 +3543,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.000001, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.25, y: 0}
+  m_SizeDelta: {x: 1.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1198807497
 MonoBehaviour:
@@ -3950,7 +3952,7 @@ MonoBehaviour:
       - m_Target: {fileID: 79723584}
         m_TargetAssemblyTypeName: LevelUpScreen, Assembly-CSharp
         m_MethodName: OnItemBought
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -96039,8 +96041,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.25, y: 0}
+  m_SizeDelta: {x: 1.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2137784381
 MonoBehaviour:
