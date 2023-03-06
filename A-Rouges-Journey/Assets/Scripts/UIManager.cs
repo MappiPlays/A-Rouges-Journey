@@ -8,9 +8,9 @@ using System.Globalization;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI[] UITexts;
-
-    [SerializeField] private TextMeshProUGUI scoreText;
+    private GameObject levelUpScreen;
+    private TextMeshProUGUI[] UITexts;
+    private TextMeshProUGUI scoreText;
     private TextMeshProUGUI gemsText;
     private TextMeshProUGUI speedText;
     private TextMeshProUGUI damageText;
@@ -22,8 +22,11 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         PlayerStats.OnChange += UpdateStatsUI;
+        PlayerStats.OnLevelUp += ShowLevelUpScreen;
         Inventory.OnChange += UpdateInventoryUI;
         GameStats.OnScoreChange += UpdateScoreUI;
+        levelUpScreen = GetComponentInChildren<LevelUpScreen>().gameObject;
+        levelUpScreen.SetActive(false);
         UITexts = GetComponentsInChildren<TextMeshProUGUI>();
         scoreText = UITexts.Where(t => t.name == "Text_Score").First();
         gemsText = UITexts.Where(t => t.name == "Text_Gems").First();
@@ -38,6 +41,7 @@ public class UIManager : MonoBehaviour
     private void OnDestroy()
     {
         PlayerStats.OnChange -= UpdateStatsUI;
+        PlayerStats.OnLevelUp -= ShowLevelUpScreen;
         Inventory.OnChange -= UpdateInventoryUI;
         GameStats.OnScoreChange -= UpdateScoreUI;
     }
@@ -61,5 +65,10 @@ public class UIManager : MonoBehaviour
     private void UpdateScoreUI(int score)
     {
         scoreText.SetText(score.ToString());
+    }
+
+    private void ShowLevelUpScreen()
+    {
+        levelUpScreen.SetActive(true);
     }
 }

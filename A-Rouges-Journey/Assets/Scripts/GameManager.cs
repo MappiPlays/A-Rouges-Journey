@@ -16,6 +16,13 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         GameStats.OnStatsChange += OnGameStatsChanged;
+        PlayerStats.OnLevelUp += PauseGame;
+    }
+
+    private void OnDestroy()
+    {
+        GameStats.OnStatsChange -= OnGameStatsChanged;
+        PlayerStats.OnLevelUp -= PauseGame;
     }
 
     // Start is called before the first frame update
@@ -33,5 +40,15 @@ public class GameManager : MonoBehaviour
             exitPointer.SetActive(true);
             exitBorder.SetActive(false);
         }
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
     }
 }
