@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        GameStats.OnChange += OnGameStatsChanged;
+        GameStats.OnStatsChange += OnGameStatsChanged;
     }
 
     // Start is called before the first frame update
@@ -23,12 +23,6 @@ public class GameManager : MonoBehaviour
     {
         ui = FindObjectOfType<UIManager>().gameObject;
         exitPointer = ui.GetComponentInChildren<ExitPointer>(true).gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnGameStatsChanged(GameStats stats)

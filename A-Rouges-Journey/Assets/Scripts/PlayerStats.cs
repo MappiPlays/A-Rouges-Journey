@@ -7,15 +7,43 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance;
     public static event Action<PlayerStats> OnChange;
+    public static event Action OnLevelUp;
 
-    private void Awake()
+    [SerializeField] private int playerLevel;
+    public int PlayerLevel
     {
-        Instance = this;
+        get { return playerLevel; }
+        set
+        {
+            playerLevel = value;
+            OnLevelUp?.Invoke();
+        }
     }
 
-    private void Start()
+    [SerializeField] private int experience;
+    public int Experience
     {
-        OnChange?.Invoke(Instance);
+        get { return experience; }
+        set
+        {
+            experience = value;
+            OnChange?.Invoke(Instance);
+            if(experience >= experienceToLevelUp)
+            {
+                PlayerLevel++;
+            }
+        }
+    }
+
+    [SerializeField] private int experienceToLevelUp;
+    public int ExperienceToLevelUp
+    {
+        get { return experienceToLevelUp; }
+        set
+        {
+            experienceToLevelUp = value;
+            OnChange?.Invoke(Instance);
+        }
     }
 
     [SerializeField] private float movementspeed;
@@ -71,5 +99,28 @@ public class PlayerStats : MonoBehaviour
             attackdamage = value;
             OnChange?.Invoke(Instance);
         }
+    }
+
+
+    private void Awake()
+    {
+        Instance = this;
+        OnLevelUp += HandleLevelUp;
+    }
+
+    private void Start()
+    {
+        OnChange?.Invoke(Instance);
+    }
+
+    private void OnDestroy()
+    {
+        OnLevelUp -= HandleLevelUp;
+    }
+
+    private void HandleLevelUp()
+    {
+        Experience = Experience - experienceToLevelUp;
+        experienceToLevelUp = Mathf.RoundToInt(experienceToLevelUp * 1.2f);
     }
 }

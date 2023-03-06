@@ -8,30 +8,38 @@ using System.Globalization;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI[] statsUITexts;
+    [SerializeField] TextMeshProUGUI[] UITexts;
 
+    [SerializeField] private TextMeshProUGUI scoreText;
     private TextMeshProUGUI gemsText;
     private TextMeshProUGUI speedText;
     private TextMeshProUGUI damageText;
     private TextMeshProUGUI delayText;
     private TextMeshProUGUI attackSpeedText;
+    private TextMeshProUGUI playerLevelText;
+    private Slider xpBar;
 
     private void Awake()
     {
         PlayerStats.OnChange += UpdateStatsUI;
         Inventory.OnChange += UpdateInventoryUI;
-        statsUITexts = GetComponentsInChildren<TextMeshProUGUI>();
-        gemsText = statsUITexts.Where(t => t.name == "Text_Gems").First();
-        speedText = statsUITexts.Where(t => t.name == "Text_Speed").First();
-        damageText = statsUITexts.Where(t => t.name == "Text_Damage").First();
-        delayText = statsUITexts.Where(t => t.name == "Text_Delay").First();
-        attackSpeedText = statsUITexts.Where(t => t.name == "Text_AttackSpeed").First();
+        GameStats.OnScoreChange += UpdateScoreUI;
+        UITexts = GetComponentsInChildren<TextMeshProUGUI>();
+        scoreText = UITexts.Where(t => t.name == "Text_Score").First();
+        gemsText = UITexts.Where(t => t.name == "Text_Gems").First();
+        speedText = UITexts.Where(t => t.name == "Text_Speed").First();
+        damageText = UITexts.Where(t => t.name == "Text_Damage").First();
+        delayText = UITexts.Where(t => t.name == "Text_Delay").First();
+        attackSpeedText = UITexts.Where(t => t.name == "Text_AttackSpeed").First();
+        playerLevelText = UITexts.Where(t => t.name == "Text_PlayerLevel").First();
+        xpBar = GetComponentInChildren<Slider>();
     }
 
     private void OnDestroy()
     {
         PlayerStats.OnChange -= UpdateStatsUI;
         Inventory.OnChange -= UpdateInventoryUI;
+        GameStats.OnScoreChange -= UpdateScoreUI;
     }
 
     private void UpdateStatsUI(PlayerStats stats)
@@ -40,10 +48,18 @@ public class UIManager : MonoBehaviour
         damageText.SetText(stats.AttackDamage.ToString("F2", CultureInfo.InvariantCulture));
         delayText.SetText(stats.AttackDelay.ToString("F2", CultureInfo.InvariantCulture));
         attackSpeedText.SetText(stats.AttackVelocity.ToString("F2", CultureInfo.InvariantCulture));
+        playerLevelText.SetText(stats.PlayerLevel.ToString());
+        xpBar.maxValue = stats.ExperienceToLevelUp;
+        xpBar.value = stats.Experience;
     }
 
     private void UpdateInventoryUI(Inventory inventory)
     {
         gemsText.SetText(inventory.GetGems().ToString());
+    }
+
+    private void UpdateScoreUI(int score)
+    {
+        scoreText.SetText(score.ToString());
     }
 }

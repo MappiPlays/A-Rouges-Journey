@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
     {
         gems += amount;
         OnChange?.Invoke(Instance);
+        GameStats.Instance.Score += amount * 100;
     }
 
     public bool RemoveGems(int amount)

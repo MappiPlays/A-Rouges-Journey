@@ -9,6 +9,7 @@ public class EnemySlime : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private GameObject drop;
     [SerializeField] private float dropChance;
+    [SerializeField] private int scoreOnDeath;
 
     private float speedMultiplier;
     private Rigidbody2D rb;
@@ -62,6 +63,8 @@ public class EnemySlime : MonoBehaviour
     private void Die()
     {
         GameStats.Instance.NumOfEnemies--;
+        GameStats.Instance.Score += scoreOnDeath;
+        PlayerStats.Instance.Experience += scoreOnDeath;
         Destroy(transform.parent.gameObject);
         Destroy(gameObject);
     }

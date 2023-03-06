@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerGotHit;
 
     private Animator anim;
-    //private bool isVulnerable;
 
     private void Awake()
     {
