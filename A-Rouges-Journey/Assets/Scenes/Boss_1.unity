@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6072216441857186550, guid: f741f21de3929ed4fac14bef28abb6b5, type: 3}
       propertyPath: nextSceneName
-      value: MainMenu
+      value: EndScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f741f21de3929ed4fac14bef28abb6b5, type: 3}
@@ -537,6 +537,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8279065526555587764, guid: bcb2db24ba0011442bd443c15a3ac366, type: 3}
   m_PrefabInstance: {fileID: 1195503079}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1625138914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6488112825541804792, guid: 9fa9ba08e9418d940a2aff3ea56981b6, type: 3}
+  m_PrefabInstance: {fileID: 1877701793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4c64c2662b88248aac5b852f451a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1665134846 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6072216441857186549, guid: f741f21de3929ed4fac14bef28abb6b5, type: 3}
@@ -691,6 +702,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1752623698391826477, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1625138914}
+    - target: {fileID: 1752623698391826477, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
     - target: {fileID: 1752623698506684371, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -782,6 +801,14 @@ PrefabInstance:
     - target: {fileID: 1752623698506684375, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: m_Name
       value: GameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752623699115059174, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1625138914}
+    - target: {fileID: 1752623699115059174, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndRun
       objectReference: {fileID: 0}
     - target: {fileID: 1821298364894975541, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: m_AnchorMax.x

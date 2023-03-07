@@ -128,17 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8279065526555587764, guid: bcb2db24ba0011442bd443c15a3ac366, type: 3}
   m_PrefabInstance: {fileID: 8279065526468966515}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &131747018 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8279065526555587769, guid: bcb2db24ba0011442bd443c15a3ac366, type: 3}
-  m_PrefabInstance: {fileID: 8279065526468966515}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4448862dbea604ba452266629e0439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &568791069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6072216441857186549, guid: f741f21de3929ed4fac14bef28abb6b5, type: 3}
@@ -345,19 +334,23 @@ PrefabInstance:
     - target: {fileID: 1752623698684628883, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: stats
       value: 
-      objectReference: {fileID: 131747018}
+      objectReference: {fileID: 0}
     - target: {fileID: 1752623699043300165, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: stats
       value: 
-      objectReference: {fileID: 131747018}
+      objectReference: {fileID: 0}
     - target: {fileID: 1752623699115059174, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1710089712}
+    - target: {fileID: 1752623699115059174, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndRun
+      objectReference: {fileID: 0}
     - target: {fileID: 1752623699171512624, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: stats
       value: 
-      objectReference: {fileID: 131747018}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
 --- !u!1001 &2670700014096812019

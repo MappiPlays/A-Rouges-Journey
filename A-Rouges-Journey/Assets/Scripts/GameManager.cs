@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,7 +31,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         GameStats.OnStatsChange += OnGameStatsChanged;
         PlayerStats.OnLevelUp += FreezGame;
+        SceneManager.sceneLoaded += HandleSceneLoaded;
         Time.timeScale = 1f;
+        FindReferences();
     }
 
     private void OnDestroy()
@@ -39,21 +42,28 @@ public class GameManager : MonoBehaviour
         PlayerStats.OnLevelUp -= FreezGame;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void FindReferences()
     {
         ui = FindObjectOfType<UIManager>().gameObject;
         exitPointer = ui.GetComponentInChildren<ExitPointer>(true).gameObject;
+        Tilemap[] tilemaps = FindObjectsOfType<Tilemap>(true);
+        if(tilemaps.Length > 0)
+            exitBorder = tilemaps.Where(t => t.gameObject.name == "ExitBorder").FirstOrDefault().gameObject;
     }
 
     private void OnGameStatsChanged(GameStats stats)
     {
         if(stats.NumOfEnemies == 0) 
         {
-            Debug.Log("All Enemies are Dead");
             exitPointer.SetActive(true);
             exitBorder.SetActive(false);
         }
+    }
+
+    private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(!(scene.name == "EndScreen" || scene.name == "MainMenu" || scene.name == "DeathScreen"))
+            FindReferences();
     }
 
     public void PauseGame()
@@ -74,8 +84,25 @@ public class GameManager : MonoBehaviour
         OnGameResumed?.Invoke();
     }
 
-    public void ReturnToMainMenu()
+    public void LoadNewScene(string sceneName)
+    {
+        GameStats.Instance.NumOfEnemies = 0;
+        SceneManager.LoadScene(sceneName);
+        //if(!(String.Compare(sceneName, "EndScreen") == 0 || String.Compare(sceneName, "DeathScreen") == 0))
+        //    FindReferences();
+    }
+
+    public void EndRun()
     {
         SceneManager.LoadScene(0);
+        Destroy(gameObject);
+    }
+
+    public void FinishGame()
+    {
+        if(PlayerPrefs.GetInt("HighScore") < GameStats.Instance.Score)
+        {
+            PlayerPrefs.SetInt("HighScore", GameStats.Instance.Score);
+        }
     }
 }

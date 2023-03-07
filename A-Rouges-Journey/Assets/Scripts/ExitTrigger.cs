@@ -10,8 +10,7 @@ public class ExitTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Level finished, Go to next Level");
-            SceneManager.LoadScene(nextSceneName);
+            GameManager.Instance.LoadNewScene(nextSceneName);
         }
     }
 }

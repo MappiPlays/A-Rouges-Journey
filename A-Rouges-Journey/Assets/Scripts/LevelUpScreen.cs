@@ -40,7 +40,6 @@ public class LevelUpScreen : MonoBehaviour
 
     public void OnItemBought(bool isLeftItem)
     {
-        Debug.Log("Item bought!");
         ItemCard item = isLeftItem ? item1 : item2;
 
         PlayerStats.Instance.UpdateStats(item.movementSpeedEffect, item.damageEffect, item.delayEffect, item.attackSpeedEffect);

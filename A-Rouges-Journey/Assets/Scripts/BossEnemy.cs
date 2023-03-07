@@ -9,8 +9,9 @@ public class BossEnemy : Enemy
     public static event Action<float> OnBossHealthChanged;
     public static event Action OnBossDied;
 
-    private void OnEnable()
+    protected override void Start()
     {
+        base.Start();
         OnBossSpawned?.Invoke(this);
     }
 

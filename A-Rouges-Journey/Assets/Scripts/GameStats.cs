@@ -33,7 +33,6 @@ public class GameStats : MonoBehaviour
 
     private void Start()
     {
-        //OnChange?.Invoke(Instance);
         score = 500;
         OnScoreChange?.Invoke(score);
         StartCoroutine(scoreDecreaseOverTimeCo());
@@ -82,12 +81,17 @@ public class GameStats : MonoBehaviour
 
     private void HandleGameFreezed()
     {
-        StopAllCoroutines();
+        StopScoreDecrease();
     }
 
     private void HandleGameResumed()
     {
         StartCoroutine(scoreDecreaseOverTimeCo());
+    }
+
+    public void StopScoreDecrease()
+    {
+        StopAllCoroutines();
     }
 
 }

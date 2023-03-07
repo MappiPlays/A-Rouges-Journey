@@ -12,7 +12,16 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         OnPlayerGotHit += HandlePlayerGotHit;
+    }
+
+    private void Start()
+    {
         anim = GetComponent<Animator>();
+    }
+
+    private void OnDestroy()
+    {
+        OnPlayerGotHit -= HandlePlayerGotHit;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
