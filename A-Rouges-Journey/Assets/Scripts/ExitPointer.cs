@@ -9,6 +9,11 @@ public class ExitPointer : MonoBehaviour
     private Vector2 playerPos;
     private Transform player;
 
+    private void Awake()
+    {
+        Inventory.OnChange += OnInventoryChanged;
+    }
+
     void Start()
     {
         gameObject.SetActive(false);
@@ -23,5 +28,13 @@ public class ExitPointer : MonoBehaviour
         Vector2 toExit = new Vector2(exitPos.x - playerPos.x, exitPos.y - playerPos.y).normalized;
         transform.rotation = Quaternion.FromToRotation(Vector2.up, toExit);
         transform.localPosition = toExit * 64;
+    }
+
+    private void OnInventoryChanged(Inventory inventory)
+    {
+        if (inventory.HasKey)
+        {
+            gameObject.SetActive(true);
+        }
     }
 }

@@ -11,6 +11,17 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private int gems;
 
+    [SerializeField] private bool hasKey;
+    public bool HasKey
+    {
+        get { return hasKey; }
+        set 
+        {
+            hasKey = value;
+            OnChange?.Invoke(Instance);
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

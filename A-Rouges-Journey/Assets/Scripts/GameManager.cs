@@ -55,11 +55,11 @@ public class GameManager : MonoBehaviour
 
     private void OnGameStatsChanged(GameStats stats)
     {
-        if(stats.NumOfEnemies == 0) 
-        {
-            exitPointer.SetActive(true);
-            exitBorder.SetActive(false);
-        }
+        //if(stats.NumOfEnemies == 0) 
+        //{
+        //    exitPointer.SetActive(true);
+        //    exitBorder.SetActive(false);
+        //}
     }
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)

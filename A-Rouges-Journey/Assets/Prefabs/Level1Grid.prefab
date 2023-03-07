@@ -90739,6 +90739,7 @@ MonoBehaviour:
   borderTile: {fileID: 11400000, guid: 723d8385982eaa14db1252fffa84c751, type: 2}
   spawnPointsParent: {fileID: 2670700014855505888}
   spawnPointPrefab: {fileID: 4682184404680565144, guid: e0855e2bccfb96146adcbe972cb056a5, type: 3}
+  goldenKeyPrefab: {fileID: 1606784773500031729, guid: ef5b7ebf28608184597cb7278a7ba9af, type: 3}
   width: 50
   height: 50
   offsetX: 0

@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -14,6 +15,7 @@ public class TilemapGenerator : MonoBehaviour
     [SerializeField] TileBase borderTile;
     [SerializeField] GameObject spawnPointsParent;
     [SerializeField] GameObject spawnPointPrefab;
+    [SerializeField] GameObject goldenKeyPrefab;
     [SerializeField] int width;
     [SerializeField] int height;
     [SerializeField] float offsetX;
@@ -47,11 +49,13 @@ public class TilemapGenerator : MonoBehaviour
                 
                 PlaceGroundTile(currentPos, noisevalue);
                 PlaceBorderTile(currentPos, noisevalue);
-                
+
+
                 y++;
             }
             x++;
         }
+        PlaceGoldenKey();
     }
 
     void PlaceGroundTile(Vector3Int position, float noisevalue)
@@ -100,5 +104,20 @@ public class TilemapGenerator : MonoBehaviour
         }
 
         return false;
+    }
+
+    void PlaceGoldenKey()
+    {
+        int x = 0, y = 0;
+        float xCoord, yCoord, noisevalue = 0f;
+        while (!(noisevalue < .65f && noisevalue > .35f))
+        {
+            x = Random.Range(0, width);
+            y = Random.Range(0, height);
+            xCoord = (float)x / width * scale + offsetX;
+            yCoord = (float)y / height * scale + offsetY;
+            noisevalue = Mathf.PerlinNoise(xCoord, yCoord);
+        }
+        Instantiate(goldenKeyPrefab, new Vector2(x+.5f, y+.5f), Quaternion.identity);
     }
 }
