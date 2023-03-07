@@ -15,13 +15,13 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb;
     protected Animator anim;
 
-    private void Awake()
+    virtual protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
-    private void Start()
+    virtual protected void Start()
     {
         GameStats.Instance.NumOfEnemies++;
     }

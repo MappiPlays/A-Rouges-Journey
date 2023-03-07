@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private string[] ignoredColliderNames;
+    [SerializeField] private string[] ignoredColliderTags;
     
     private Rigidbody2D rb;
     private float damage;
@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!ignoredColliderNames.Contains(collision.tag))
+        if (!ignoredColliderTags.Contains(collision.tag))
         {
             if(collision.CompareTag("Enemy"))
             {

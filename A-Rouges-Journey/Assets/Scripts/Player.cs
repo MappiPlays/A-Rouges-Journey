@@ -23,6 +23,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyBullet"))
+        {
+            OnPlayerGotHit?.Invoke();
+        }
+    }
+
     private void HandlePlayerGotHit()
     {
         PlayerStats.Instance.Health -= 1;

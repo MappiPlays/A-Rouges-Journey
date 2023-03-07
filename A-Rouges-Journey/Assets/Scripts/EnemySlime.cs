@@ -6,10 +6,11 @@ public class EnemySlime : Enemy
 {
     private float speedMultiplier;
 
-    private void Start()
+    protected override void Start()
     {
         target = transform.parent;
         speedMultiplier = 0f;
+        base.Start();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
