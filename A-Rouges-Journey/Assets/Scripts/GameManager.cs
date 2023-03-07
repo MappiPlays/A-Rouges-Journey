@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         GameStats.OnStatsChange += OnGameStatsChanged;
         PlayerStats.OnLevelUp += FreezGame;
         SceneManager.sceneLoaded += HandleSceneLoaded;
+        PlayerStats.OnPlayerDied += HandlePlayerDied;
         Time.timeScale = 1f;
         FindReferences();
     }
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         GameStats.OnStatsChange -= OnGameStatsChanged;
         PlayerStats.OnLevelUp -= FreezGame;
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
     }
 
     private void FindReferences()
@@ -66,6 +68,12 @@ public class GameManager : MonoBehaviour
             FindReferences();
     }
 
+    private void HandlePlayerDied()
+    {
+        FreezGame();
+        LoadNewScene("DeathScreen");
+    }
+
     public void PauseGame()
     {
         FreezGame();
@@ -88,8 +96,6 @@ public class GameManager : MonoBehaviour
     {
         GameStats.Instance.NumOfEnemies = 0;
         SceneManager.LoadScene(sceneName);
-        //if(!(String.Compare(sceneName, "EndScreen") == 0 || String.Compare(sceneName, "DeathScreen") == 0))
-        //    FindReferences();
     }
 
     public void EndRun()

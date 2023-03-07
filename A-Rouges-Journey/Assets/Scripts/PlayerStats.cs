@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats Instance;
     public static event Action<PlayerStats> OnChange;
     public static event Action OnLevelUp;
+    public static event Action OnPlayerDied;
 
     [SerializeField] private int playerLevel;
     public int PlayerLevel
@@ -65,6 +66,10 @@ public class PlayerStats : MonoBehaviour
         { 
             health = value;
             OnChange?.Invoke(Instance);
+            if(health <= 0)
+            {
+                OnPlayerDied?.Invoke();
+            }
         }
     }
 
