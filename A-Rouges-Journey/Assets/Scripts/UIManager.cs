@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI attackSpeedText;
     private TextMeshProUGUI playerLevelText;
     private Slider xpBar;
+    private Slider bossBar;
 
     private void Awake()
     {
@@ -27,6 +28,9 @@ public class UIManager : MonoBehaviour
         Inventory.OnChange += UpdateInventoryUI;
         GameStats.OnScoreChange += UpdateScoreUI;
         GameManager.OnGamePaused += HandleGamePaused;
+        BossEnemy.OnBossSpawned += ActivateBossBar;
+        BossEnemy.OnBossHealthChanged += UpdateBossBar;
+        BossEnemy.OnBossDied += DeactivateBossBar;
         UITexts = GetComponentsInChildren<TextMeshProUGUI>(true);
         levelUpScreen = GetComponentInChildren<LevelUpScreen>(true).gameObject;
         PauseScreen = UITexts.Where(t => t.name == "Label_Pause").First().transform.parent.parent.gameObject;
@@ -37,10 +41,12 @@ public class UIManager : MonoBehaviour
         delayText = UITexts.Where(t => t.name == "Text_Delay").First();
         attackSpeedText = UITexts.Where(t => t.name == "Text_AttackSpeed").First();
         playerLevelText = UITexts.Where(t => t.name == "Text_PlayerLevel").First();
-        xpBar = GetComponentInChildren<Slider>();
+        xpBar = GetComponentsInChildren<Slider>().Where(s => s.name == "xpBar").First();
+        bossBar = GetComponentsInChildren<Slider>(true).Where(s => s.name == "BossBar").First();
         
         levelUpScreen.SetActive(false);
         PauseScreen.SetActive(false);
+        bossBar.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -57,6 +63,9 @@ public class UIManager : MonoBehaviour
         Inventory.OnChange -= UpdateInventoryUI;
         GameStats.OnScoreChange -= UpdateScoreUI;
         GameManager.OnGamePaused -= HandleGamePaused;
+        BossEnemy.OnBossSpawned -= ActivateBossBar;
+        BossEnemy.OnBossHealthChanged -= UpdateBossBar;
+        BossEnemy.OnBossDied -= DeactivateBossBar;
     }
 
     private void UpdateStatsUI(PlayerStats stats)
@@ -88,5 +97,22 @@ public class UIManager : MonoBehaviour
     private void HandleGamePaused()
     {
         PauseScreen.SetActive(true);
+    }
+
+    private void ActivateBossBar(BossEnemy boss)
+    {
+        bossBar.maxValue = boss.health;
+        bossBar.value = boss.health;
+        bossBar.gameObject.SetActive(true);
+    }
+
+    private void UpdateBossBar(float health)
+    {
+        bossBar.value = health;
+    }
+
+    private void DeactivateBossBar()
+    {
+        bossBar.gameObject.SetActive(false);
     }
 }

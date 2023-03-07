@@ -254,9 +254,10 @@ GameObject:
   - component: {fileID: 1002557115}
   - component: {fileID: 1002557114}
   - component: {fileID: 1002557119}
+  - component: {fileID: 1002557120}
   m_Layer: 0
   m_Name: SlimeBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,6 +386,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.05, y: -0.2}
   m_Size: {x: 1.75, y: 1.2}
   m_Direction: 1
+--- !u!114 &1002557120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002557113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54c06952b880ec47a50797bbb94f8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  movementSpeed: 2
+  target: {fileID: 0}
+  drop: {fileID: 0}
+  dropChance: 0
+  scoreOnDeath: 0
 --- !u!1001 &1074925693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,6 +666,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1752623697479175160, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1752623697685864832, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -655,6 +678,10 @@ PrefabInstance:
       propertyPath: exitPoint
       value: 
       objectReference: {fileID: 1665134846}
+    - target: {fileID: 1752623697701400682, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1752623698506684371, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -746,6 +773,26 @@ PrefabInstance:
     - target: {fileID: 1752623698506684375, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
       propertyPath: m_Name
       value: GameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821298364894975541, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821298364894975541, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777582183777481670, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777582183777481670, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777582183777481670, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}

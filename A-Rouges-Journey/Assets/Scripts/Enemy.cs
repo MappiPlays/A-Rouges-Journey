@@ -5,20 +5,30 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float health;
+    [SerializeField] public float health;
     [SerializeField] protected float movementSpeed;
     [SerializeField] protected Transform target;
     [SerializeField] protected GameObject drop;
     [SerializeField] protected float dropChance;
     [SerializeField] protected int scoreOnDeath;
 
+    protected Rigidbody2D rb;
+    protected Animator anim;
+
     private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
+    private void Start()
     {
         GameStats.Instance.NumOfEnemies++;
     }
 
-    protected void OnHit(float damage)
+    virtual protected void OnHit(float damage)
     {
+        anim.SetTrigger("TakeDamage");
         health -= damage;
         if(health <= 0f)
         {

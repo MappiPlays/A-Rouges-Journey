@@ -60,6 +60,17 @@ public class GameStats : MonoBehaviour
         }
     }
 
+    [SerializeField] private bool hasBoss;
+    public bool HasBoss
+    {
+        get { return hasBoss; }
+        set
+        {
+            hasBoss = value;
+            OnStatsChange?.Invoke(Instance);
+        }
+    }
+
     IEnumerator scoreDecreaseOverTimeCo()
     {
         while(Score > 0)

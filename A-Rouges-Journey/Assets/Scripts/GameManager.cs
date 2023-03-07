@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-
     [SerializeField] private GameObject ui;
     [SerializeField] private GameObject exitBorder;
     [SerializeField] private GameObject exitPointer;
