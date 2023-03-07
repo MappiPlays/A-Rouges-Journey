@@ -20,7 +20,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
         GameStats.OnStatsChange += OnGameStatsChanged;
         PlayerStats.OnLevelUp += FreezGame;
         Time.timeScale = 1f;

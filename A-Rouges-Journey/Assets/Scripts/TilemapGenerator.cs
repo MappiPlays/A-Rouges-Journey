@@ -68,7 +68,6 @@ public class TilemapGenerator : MonoBehaviour
             {
                 // create EnemySpawnpoints
                 Instantiate(spawnPointPrefab, gameObject.GetComponent<Grid>().GetCellCenterWorld(position), Quaternion.identity, spawnPointsParent.transform);
-                GameStats.Instance.NumOfEnemies++;
             }
             //Normal Path
             groundTilemap.SetTile(position, groundTiles[0]);

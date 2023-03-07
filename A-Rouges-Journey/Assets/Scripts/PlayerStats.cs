@@ -104,8 +104,21 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
         OnLevelUp += HandleLevelUp;
+    }
+
+    private void OnEnable()
+    {
+        OnChange?.Invoke(Instance);
     }
 
     private void Start()

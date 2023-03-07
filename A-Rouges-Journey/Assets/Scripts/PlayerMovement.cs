@@ -9,13 +9,18 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody2D rb;
     private Animator playerAnimator;
-    private float moveSpeed;
+    [SerializeField] private float moveSpeed;
 
     private void Awake()
     {
         PlayerStats.OnChange += UpdateMoveSpeed;
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        UpdateMoveSpeed(PlayerStats.Instance);
     }
 
     private void OnDestroy()

@@ -43,6 +43,13 @@ public class UIManager : MonoBehaviour
         PauseScreen.SetActive(false);
     }
 
+    private void Start()
+    {
+        UpdateStatsUI(PlayerStats.Instance);
+        UpdateInventoryUI(Inventory.Instance);
+        UpdateScoreUI(GameStats.Instance.Score);
+    }
+
     private void OnDestroy()
     {
         PlayerStats.OnChange -= UpdateStatsUI;

@@ -12,7 +12,15 @@ public class GameStats : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
         GameManager.OnGameFreezed += HandleGameFreezed;
         GameManager.OnGameResumed += HandleGameResumed;
     }

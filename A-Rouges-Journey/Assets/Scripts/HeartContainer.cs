@@ -19,6 +19,11 @@ public class HeartContainer : MonoBehaviour
         img = GetComponent<Image>();
     }
 
+    private void Start()
+    {
+        UpdateSprite(PlayerStats.Instance);
+    }
+
     private void OnDestroy()
     {
         PlayerStats.OnChange -= UpdateSprite;

@@ -2,15 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySlime : MonoBehaviour
+public class EnemySlime : Enemy
 {
-    [SerializeField] private float health;
-    [SerializeField] private float movementSpeed;
-    [SerializeField] private Transform target;
-    [SerializeField] private GameObject drop;
-    [SerializeField] private float dropChance;
-    [SerializeField] private int scoreOnDeath;
-
     private float speedMultiplier;
     private Rigidbody2D rb;
     private Animator anim;
@@ -46,26 +39,9 @@ public class EnemySlime : MonoBehaviour
         }
     }
 
-    private void OnHit(float damage)
+    new private void OnHit(float damage)
     {
         anim.SetTrigger("TakeDamage");
-        health -= damage;
-        if(health <= 0f)
-        {
-            if(Random.value <= dropChance)
-            {
-                Instantiate(drop, transform.position, Quaternion.identity);
-            }
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        GameStats.Instance.NumOfEnemies--;
-        GameStats.Instance.Score += scoreOnDeath;
-        PlayerStats.Instance.Experience += scoreOnDeath;
-        Destroy(transform.parent.gameObject);
-        Destroy(gameObject);
+        base.OnHit(damage);
     }
 }
