@@ -21,6 +21,7 @@ public class TilemapGenerator : MonoBehaviour
     [SerializeField] float offsetX;
     [SerializeField] float offsetY;
     [SerializeField] float scale;
+    [SerializeField] bool dithering;
 
     void Start()
     {
@@ -49,7 +50,6 @@ public class TilemapGenerator : MonoBehaviour
                 
                 PlaceGroundTile(currentPos, noisevalue);
                 PlaceBorderTile(currentPos, noisevalue);
-
 
                 y++;
             }
@@ -91,8 +91,14 @@ public class TilemapGenerator : MonoBehaviour
         }
         if (noisevalue > .7f || noisevalue < .3f)
         {
-            if ((position.x + position.y) % 2 == 0)
-                borderTilemap.SetTile(position, borderTile);
+            if (dithering)
+            {
+                if ((position.x + position.y) % 2 == 1)
+                {
+                    return;
+                }
+            }
+            borderTilemap.SetTile(position, borderTile);
         }
     }
 
