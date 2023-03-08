@@ -10,6 +10,7 @@ public class GoldenKey : Collectable
         {
             collision.gameObject.SetActive(false);
             FindObjectOfType<ExitPointer>().gameObject.SetActive(false);
+            Inventory.Instance.HasKey = false;
             Destroy(gameObject);
         }
     }

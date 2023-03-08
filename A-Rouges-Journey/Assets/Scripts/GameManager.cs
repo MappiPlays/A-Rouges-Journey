@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
-        GameStats.OnStatsChange += OnGameStatsChanged;
         PlayerStats.OnLevelUp += FreezGame;
         SceneManager.sceneLoaded += HandleSceneLoaded;
         PlayerStats.OnPlayerDied += HandlePlayerDied;
@@ -39,7 +38,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameStats.OnStatsChange -= OnGameStatsChanged;
         PlayerStats.OnLevelUp -= FreezGame;
         SceneManager.sceneLoaded -= HandleSceneLoaded;
     }
@@ -51,15 +49,6 @@ public class GameManager : MonoBehaviour
         Tilemap[] tilemaps = FindObjectsOfType<Tilemap>(true);
         if(tilemaps.Length > 0)
             exitBorder = tilemaps.Where(t => t.gameObject.name == "ExitBorder").FirstOrDefault().gameObject;
-    }
-
-    private void OnGameStatsChanged(GameStats stats)
-    {
-        //if(stats.NumOfEnemies == 0) 
-        //{
-        //    exitPointer.SetActive(true);
-        //    exitBorder.SetActive(false);
-        //}
     }
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)

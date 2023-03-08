@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfEnemies: 0
   score: 0
+  hasBoss: 0
 --- !u!114 &-8289185043408868729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLevel: 0
   experience: 0
-  experienceToLevelUp: 100
+  experienceToLevelUp: 150
   movementspeed: 3
   health: 6
   attackdelay: 1
@@ -97,3 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gems: 0
+  hasKey: 0
