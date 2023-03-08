@@ -41,7 +41,7 @@ public class HeartContainer : MonoBehaviour
                 img.sprite = spriteHalf;
                 break;
 
-            case 2:
+            case >= 2:
                 img.sprite = spriteFull;
                 break;
         }

@@ -65,6 +65,10 @@ public class PlayerStats : MonoBehaviour
         set 
         { 
             health = value;
+            if(health > 6)
+            {
+                health = 6;
+            }
             OnChange?.Invoke(Instance);
             if(health <= 0)
             {
