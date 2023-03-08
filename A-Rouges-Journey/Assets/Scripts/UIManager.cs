@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Globalization;
+using Mono.Cecil;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI delayText;
     private TextMeshProUGUI attackSpeedText;
     private TextMeshProUGUI playerLevelText;
+    private TextMeshProUGUI xpGainedText;
     private Slider xpBar;
     private Slider bossBar;
 
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour
         delayText = UITexts.Where(t => t.name == "Text_Delay").First();
         attackSpeedText = UITexts.Where(t => t.name == "Text_AttackSpeed").First();
         playerLevelText = UITexts.Where(t => t.name == "Text_PlayerLevel").First();
+        xpGainedText = UITexts.Where(t => t.name == "Text_xpGained").First();
         xpBar = GetComponentsInChildren<Slider>().Where(s => s.name == "xpBar").First();
         bossBar = GetComponentsInChildren<Slider>(true).Where(s => s.name == "BossBar").First();
         
@@ -70,6 +73,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateStatsUI(PlayerStats stats)
     {
+        int xpChange = stats.Experience - (int) xpBar.value;
         speedText.SetText(stats.MovementSpeed.ToString("F2", CultureInfo.InvariantCulture));
         damageText.SetText(stats.AttackDamage.ToString("F2", CultureInfo.InvariantCulture));
         delayText.SetText(stats.AttackDelay.ToString("F2", CultureInfo.InvariantCulture));
@@ -77,6 +81,17 @@ public class UIManager : MonoBehaviour
         playerLevelText.SetText(stats.PlayerLevel.ToString());
         xpBar.maxValue = stats.ExperienceToLevelUp;
         xpBar.value = stats.Experience;
+        if(xpChange > 0)
+            StartCoroutine(ShowXpGained(xpChange));
+    }
+
+    IEnumerator ShowXpGained(int value)
+    {
+        Animator xpTextAnim = xpGainedText.GetComponent<Animator>();
+        xpGainedText.SetText("+" + value.ToString() + " XP");
+        xpTextAnim.SetTrigger("Show");
+        yield return new WaitForSeconds(1f);
+        xpTextAnim.SetTrigger("FadeOut");
     }
 
     private void UpdateInventoryUI(Inventory inventory)

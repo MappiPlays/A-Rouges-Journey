@@ -351,6 +351,30 @@ PrefabInstance:
       propertyPath: stats
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5755610851401924024, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5789896220120885560, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476320785067260045, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476320785067260045, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476320785067260045, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476320785067260045, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4259781
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60abc5dce613c554a8b7af53d1f7017a, type: 3}
 --- !u!1001 &2670700014096812019
