@@ -73,7 +73,10 @@ public class UIManager : MonoBehaviour
 
     private void UpdateStatsUI(PlayerStats stats)
     {
-        int xpChange = stats.Experience - (int) xpBar.value;
+        int xpChange = 0;
+        if (xpBar.maxValue != 100f)
+            xpChange = stats.Experience - (int) xpBar.value;
+
         speedText.SetText(stats.MovementSpeed.ToString("F2", CultureInfo.InvariantCulture));
         damageText.SetText(stats.AttackDamage.ToString("F2", CultureInfo.InvariantCulture));
         delayText.SetText(stats.AttackDelay.ToString("F2", CultureInfo.InvariantCulture));
