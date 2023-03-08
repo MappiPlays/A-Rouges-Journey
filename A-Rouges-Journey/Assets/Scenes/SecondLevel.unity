@@ -94883,7 +94883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6072216441857186550, guid: f741f21de3929ed4fac14bef28abb6b5, type: 3}
       propertyPath: nextSceneName
-      value: ThirdLevel
+      value: Boss_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f741f21de3929ed4fac14bef28abb6b5, type: 3}
