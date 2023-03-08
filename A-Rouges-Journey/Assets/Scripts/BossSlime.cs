@@ -17,7 +17,7 @@ public class BossSlime : BossEnemy
     {
         while(health > 0)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             RandomAttack();
         }
     }
@@ -27,25 +27,31 @@ public class BossSlime : BossEnemy
         switch(Random.Range(0, 2))
         {
             case 0:
-                Shoot4Directions();
+                StartCoroutine(Shoot4Directions());
                 break;
             case 1:
-                SlideAttack();
+                StartCoroutine(SlideAttack());
                 break;
         }
     }
 
-    private void Shoot4Directions()
+    IEnumerator Shoot4Directions()
     {
-        Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, 0));
-        Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, 90));
-        Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, 180));
-        Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, -90));
+        int rand = Random.Range(0, 3);
+        for (int i = 0; i < rand; i++)
+        {
+            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, 90));
+            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, 180));
+            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, -90));
+            yield return new WaitForSeconds(.5f);
+        }
     }
 
-    private void SlideAttack()
+    IEnumerator SlideAttack()
     {
         Vector2 toTarget = new Vector2(transform.position.x - target.position.x, transform.position.y - target.position.y).normalized * -1;
         rb.velocity = (toTarget * movementSpeed);
+        yield return new WaitForSeconds(1.5f);
     }
 }

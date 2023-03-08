@@ -9,6 +9,7 @@ public class GoldenKey : Collectable
         if (collision.gameObject.name == "ExitBorder") 
         {
             collision.gameObject.SetActive(false);
+            FindObjectOfType<ExitPointer>().gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }

@@ -14,6 +14,10 @@ public class ExitPointer : MonoBehaviour
         Inventory.OnChange += OnInventoryChanged;
     }
 
+    private void OnDestroy()
+    {
+        Inventory.OnChange -= OnInventoryChanged;
+    }
     void Start()
     {
         gameObject.SetActive(false);
