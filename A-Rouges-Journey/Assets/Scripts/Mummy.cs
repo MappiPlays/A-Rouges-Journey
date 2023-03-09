@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Mummy : Enemy
 {
-    private float speedMultiplier = 1;
+    private float speedMultiplier = 1f;
     private Vector2 targetPosition;
     private bool playerFocused;
     private bool isMoving;

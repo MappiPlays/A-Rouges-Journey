@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerGotHit;
 
     private Animator anim;
+    private bool isInvincible;
 
     private void Awake()
     {
@@ -42,8 +43,19 @@ public class Player : MonoBehaviour
 
     private void HandlePlayerGotHit()
     {
-        PlayerStats.Instance.Health -= 1;
-        anim.SetTrigger("TakeDamage");
+        if(!isInvincible)
+        {
+            StartCoroutine(MakeInvincible());
+            PlayerStats.Instance.Health -= 1;
+            anim.SetTrigger("TakeDamage");
+        }
+    }
+
+    IEnumerator MakeInvincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(.75f);
+        isInvincible = false;
     }
 
     private void OnEscape()

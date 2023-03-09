@@ -13,10 +13,6 @@ public class EnemyBullet : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start()
-    {
         rb.velocity = transform.right * velocity;
     }
 
