@@ -5,12 +5,14 @@ using UnityEngine;
 public class ShopItem : MonoBehaviour
 {
     [SerializeField] protected int price;
+    [SerializeField] protected bool canApplyEffect;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if(Inventory.Instance.GetGems() >= price)
+            SendMessage("RefreshCanApplyEffect");
+            if(Inventory.Instance.GetGems() >= price && canApplyEffect)
             {
                 Inventory.Instance.RemoveGems(price);
                 SendMessage("ApplyItemEffect");
@@ -22,5 +24,10 @@ public class ShopItem : MonoBehaviour
     protected virtual void ApplyItemEffect()
     {
 
+    }
+
+    protected virtual void RefreshCanApplyEffect()
+    { 
+    
     }
 }

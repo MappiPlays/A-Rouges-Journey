@@ -7,6 +7,13 @@ public class HeartShopItem : ShopItem
     protected override void ApplyItemEffect()
     {
         base.ApplyItemEffect();
-        PlayerStats.Instance.Health += 2;
+        if (canApplyEffect)
+            PlayerStats.Instance.Health += 2;
+    }
+
+    protected override void RefreshCanApplyEffect()
+    {
+        base.RefreshCanApplyEffect();
+        canApplyEffect = PlayerStats.Instance.Health < 6;
     }
 }
