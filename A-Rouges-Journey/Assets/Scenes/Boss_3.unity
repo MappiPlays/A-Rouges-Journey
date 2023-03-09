@@ -402,12 +402,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54c06952b880ec47a50797bbb94f8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 75
   movementSpeed: 15
   target: {fileID: 0}
   drop: {fileID: 1606784773500031729, guid: ef5b7ebf28608184597cb7278a7ba9af, type: 3}
   dropChance: 1
-  scoreOnDeath: 125
+  scoreOnDeath: 500
   bulletPrefab: {fileID: 5184343641244268142, guid: bad8d28a7e00e4c48bf9a4f2cf6e8cc0, type: 3}
 --- !u!1001 &1074925693
 PrefabInstance:

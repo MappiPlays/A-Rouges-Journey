@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
         set
         {
             playerLevel = value;
+            OnChange?.Invoke(this);
             OnLevelUp?.Invoke();
         }
     }
@@ -29,7 +30,7 @@ public class PlayerStats : MonoBehaviour
         {
             experience = value;
             OnChange?.Invoke(Instance);
-            if(experience >= experienceToLevelUp)
+            while(experience >= experienceToLevelUp)
             {
                 PlayerLevel++;
             }
