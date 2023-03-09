@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A Rouge's Journey
+  m_text: A Rogue's Journey
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 06994e29f4e5ba0448f1f142e5939171, type: 2}
   m_sharedMaterial: {fileID: -5005452983175901313, guid: 06994e29f4e5ba0448f1f142e5939171, type: 2}
