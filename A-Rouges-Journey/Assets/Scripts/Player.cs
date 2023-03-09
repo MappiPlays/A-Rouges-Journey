@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(MakeInvincible());
             PlayerStats.Instance.Health -= 1;
+            GameStats.Instance.Score -= 100;
             anim.SetTrigger("TakeDamage");
         }
     }
