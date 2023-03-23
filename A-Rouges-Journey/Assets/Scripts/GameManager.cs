@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject ui;
     [SerializeField] private GameObject exitBorder;
     [SerializeField] private GameObject exitPointer;
+    [SerializeField] private Animator transitionAnim;
 
     public static event Action OnGamePaused;
     public static event Action OnGameFreezed;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         Tilemap[] tilemaps = FindObjectsOfType<Tilemap>(true);
         if(tilemaps.Length > 0)
             exitBorder = tilemaps.Where(t => t.gameObject.name == "ExitBorder").FirstOrDefault().gameObject;
+        transitionAnim = ui.GetComponentsInChildren<CanvasGroup>().Where(t => t.gameObject.CompareTag("SceneTransition")).FirstOrDefault().GetComponent<Animator>();
     }
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -84,6 +86,13 @@ public class GameManager : MonoBehaviour
     public void LoadNewScene(string sceneName)
     {
         GameStats.Instance.NumOfEnemies = 0;
+        StartCoroutine(LoadSceneWithTransition(sceneName));
+    }
+
+    IEnumerator LoadSceneWithTransition(string sceneName)
+    {
+        transitionAnim.SetTrigger("Fadeout");
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(sceneName);
     }
 

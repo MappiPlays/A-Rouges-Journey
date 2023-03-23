@@ -7,6 +7,8 @@ using System.Linq;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private Animator fadeoutAnim;
+
     private void Start()
     {
         TextMeshProUGUI textHighscore = FindObjectsOfType<TextMeshProUGUI>().Where(t => t.name == "Text_Highscore").First();
@@ -15,6 +17,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("FirstLevel");
+        StartCoroutine(LoadScene("FirstLevel"));
+    }
+
+    IEnumerator LoadScene(string scenename)
+    {
+        fadeoutAnim.SetTrigger("Fadeout");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(scenename);
     }
 }
